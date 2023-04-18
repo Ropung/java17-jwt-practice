@@ -1,0 +1,31 @@
+server:
+  port: 80
+
+jwt:
+  password: ${JWT_SECRET_KEY:77d1b474a0920ab13e44a05170117cf0e809bad5c554d19020a95b45e9e2fb95893b8b149382e294d78fdb8e5aa2ae266b5797d985f5dc127366d2a50ec3938e}
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_DB_JDBC_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${POSTGRES_DB_USERNAME:root}
+    password: ${POSTGRES_DB_PASSWORD:root}
+  jpa:
+    #    hibernate:
+    #      ddl-auto: validate
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:/db/migration # ???
+    schemas: study_basic
+  sql:
+    init:
+      platform: postgres
