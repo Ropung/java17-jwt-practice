@@ -1,4 +1,4 @@
-package com.example.study.member.util.security;
+package com.example.study.user.util.security;
 
 
 import lombok.RequiredArgsConstructor;
