@@ -1,10 +1,11 @@
 package com.example.study.user.sevice;
 
-import com.example.study.user.config.jwt.TokenProvider;
+import com.example.study.config.jwt.TokenProvider;
 import com.example.study.user.domain.User;
 import com.example.study.user.domain.type.AccountStatus;
 import com.example.study.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ public final class DefaultUserService implements UserService {
 	private final UserRepository userRepository;
 //	private final MemberMapper memberMapper;
 	private final AuthenticationManagerBuilder authenticationManagerBuilder;
+	private final AuthenticationManager authenticationManager;
 	private final PasswordEncoder passwordEncoder;
 	private final TokenProvider tokenProvider;
 	
@@ -55,23 +57,11 @@ public final class DefaultUserService implements UserService {
 	public String login(String email, String password) {
 		UsernamePasswordAuthenticationToken authenticationToken =
 				new UsernamePasswordAuthenticationToken(email, password);
+		
 		// 검증
 		Authentication authentication =
-				authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+				authenticationManager.authenticate(authenticationToken);
 		
 		return tokenProvider.generateToken(authentication);
 	}
-
-	//	@Override
-//	public boolean signUp(Member member) {
-//		member = Member.builder()
-//				.email(member.getEmail())
-//				.password(member.getPassword())
-//				.nickname(member.getNickname())
-//				.status(AccountStatus.ACTIVE)
-//				.gender(Gender.M)
-//				.build();
-//		memberRepository.save(member);
-//		return true;
-//	}
 }

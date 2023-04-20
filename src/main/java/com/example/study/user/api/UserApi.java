@@ -12,7 +12,6 @@ import javax.validation.Valid;
 
 import static com.example.study.user.api.dto.UserRegisterDto.*;
 
-;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,7 +41,7 @@ public class UserApi {
 		String ip = request.getHeader("X-Forwarded-For");
 		if (ip == null) ip = request.getRemoteAddr();
 		
-		return new UserLoginResponseDto(userService.login(body.email(), body.rawPassword()) );
+		return new UserLoginResponseDto(userService.login(body.email(), body.rawPassword()));
 	}
 	
 //	@GetMapping("/signup/check/{email}/exists")

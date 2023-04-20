@@ -1,17 +1,17 @@
-package com.example.study.user.config;
+package com.example.study.config;
 
-import com.example.study.user.config.jwt.AuthenticationFilter;
-import com.example.study.user.config.jwt.TokenProvider;
+import com.example.study.config.jwt.TokenProvider;
 import com.example.study.user.util.security.EncoderFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -35,10 +35,11 @@ public class SecurityConfig {
 				.httpBasic().disable()
 				
 				.authorizeRequests()
-				.antMatchers ("/api/**", "/login/**","/signup/**").permitAll ()
+//				.antMatchers ("/api/**", "/login/**","/signup/**").permitAll ()
+				.anyRequest().permitAll();
 				
-				.and()
-				.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
+//				.and()
+//				.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 	
@@ -71,9 +72,9 @@ public class SecurityConfig {
 	// String token = jwtProvider.createToken(...);
 	// Cookie, Header, ... -> check. (HTTPS: SSL/TLS Certification)
 	
-//	@Bean
-//	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-//			throws Exception {
-//		return authenticationConfiguration.getAuthenticationManager();
-//	}
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
 }

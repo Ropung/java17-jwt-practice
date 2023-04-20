@@ -1,4 +1,4 @@
-package com.example.study.user.config.jwt.type;
+package com.example.study.config.jwt.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -23,9 +23,9 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 //		catalog = MySchemaConstants.SCHEMA
 )
 public class User extends UuidBaseEntity {
-	@Column(name="email" ,unique = true)
+	@Column
 	private String email;
-	@Column(name = "password")
+	@Column
 	private String password;
 	@Column
 	private String nickname;
