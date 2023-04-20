@@ -1,7 +1,7 @@
-package com.example.study.member.entity;
+package com.example.study.user.domain;
 
-import com.example.study.member.entity.type.AccountStatus;
-import com.example.study.member.entity.type.Gender;
+import com.example.study.user.domain.type.AccountStatus;
+import com.example.study.user.domain.type.Gender;
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
 import lombok.*;
@@ -18,14 +18,14 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 @AllArgsConstructor
 @Builder
 @Table(
-		name = MySchemaConstants.TB_MEMBER,
+		name = MySchemaConstants.TB_USER,
 		schema = MySchemaConstants.SCHEMA
 //		catalog = MySchemaConstants.SCHEMA
 )
-public class Member extends UuidBaseEntity {
-	@Column
+public class User extends UuidBaseEntity {
+	@Column(name="email" ,unique = true)
 	private String email;
-	@Column
+	@Column(name = "password")
 	private String password;
 	@Column
 	private String nickname;
@@ -38,6 +38,5 @@ public class Member extends UuidBaseEntity {
 	@Column
 	@Builder.Default
 	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
-	
 }
 
