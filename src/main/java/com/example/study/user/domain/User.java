@@ -31,7 +31,7 @@ public class User extends UuidBaseEntity {
 	private String nickname;
 	@Column
 	@Enumerated(EnumType.STRING)
-	private AccountStatus status = AccountStatus.ACTIVE;
+	private AccountStatus status;
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Gender gender;

@@ -73,8 +73,7 @@ public class SecurityConfig {
 	// Cookie, Header, ... -> check. (HTTPS: SSL/TLS Certification)
 	
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-			throws Exception {
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 }

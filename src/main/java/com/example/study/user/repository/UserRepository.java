@@ -9,8 +9,6 @@ import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
 	Optional<User> findByEmail(String email);
-	
-	
 	boolean existsUsersByEmail(String email);
 	
 	// 컬럼 이름으로 여러 회원 조회
