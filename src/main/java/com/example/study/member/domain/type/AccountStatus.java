@@ -1,4 +1,4 @@
-package com.example.study.user.domain.type;
+package com.example.study.member.domain.type;
 
 public enum AccountStatus {
 	ACTIVE,

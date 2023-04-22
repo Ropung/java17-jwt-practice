@@ -1,13 +1,13 @@
-package com.example.study.user.api.dto;
+package com.example.study.member.api.dto;
 
-import com.example.study.user.domain.type.Gender;
+import com.example.study.member.domain.type.Gender;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.mapstruct.EnumMapping;
 
 import javax.validation.constraints.Pattern;
 
-public record UserRegisterDto() {
-	public record UserSignUpRequestDto(
+public record MemberRegisterDto() {
+	public record MemberSignUpRequestDto(
 		String email,
 		@JsonProperty("password")
 		@Pattern(regexp =  "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
@@ -22,17 +22,17 @@ public record UserRegisterDto() {
 		//            // ...
 		//        }
 		}
-		public record UserSignUpResponseDto(
+		public record MemberSignUpResponseDto(
 				boolean success
 		){}
 	
-	public record UserLoginRequestDto(
+	public record MemberLoginRequestDto(
 			String email,
 			@JsonProperty("password")
 			@Pattern(regexp =  "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
 			String rawPassword
 	){}
-	public record UserLoginResponseDto(
+	public record MemberLoginResponseDto(
 			String token
 	){}
 	

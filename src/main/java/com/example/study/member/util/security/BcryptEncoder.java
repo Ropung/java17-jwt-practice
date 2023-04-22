@@ -1,4 +1,4 @@
-package com.example.study.user.util.security;
+package com.example.study.member.util.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;

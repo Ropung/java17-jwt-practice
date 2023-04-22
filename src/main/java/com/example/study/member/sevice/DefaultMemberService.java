@@ -1,9 +1,9 @@
-package com.example.study.user.sevice;
+package com.example.study.member.sevice;
 
 import com.example.study.config.jwt.TokenProvider;
-import com.example.study.user.domain.User;
-import com.example.study.user.domain.type.AccountStatus;
-import com.example.study.user.repository.UserRepository;
+import com.example.study.member.domain.member.Member;
+import com.example.study.member.domain.type.AccountStatus;
+import com.example.study.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,13 +11,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static com.example.study.user.api.dto.UserRegisterDto.*;
+import static com.example.study.member.api.dto.MemberRegisterDto.*;
 @Service
 @RequiredArgsConstructor
-public final class DefaultUserService implements UserService {
+public final class DefaultMemberService implements MemberService {
 	
 	
-	private final UserRepository userRepository;
+	private final MemberRepository memberRepository;
 //	private final MemberMapper memberMapper;
 	private final AuthenticationManager authenticationManager;
 	
@@ -26,11 +26,11 @@ public final class DefaultUserService implements UserService {
 	
 	
 	public boolean checkEmailExists(String email) {
-		return userRepository.existsUsersByEmail(email);
+		return memberRepository.existsMemberByEmail(email);
 	}
 	
 	@Override
-	public boolean signUp(UserSignUpRequestDto dto) {
+	public boolean signUp(MemberSignUpRequestDto dto) {
 		
 		boolean check = checkEmailExists(dto.email());
 		
@@ -41,19 +41,19 @@ public final class DefaultUserService implements UserService {
 		String rawPassword = dto.rawPassword();
 		String digest = passwordEncoder.encode(rawPassword);
 		
-		User user = User.builder()
+		Member member = Member.builder()
 				.email(dto.email())
 				.password(digest)
 				.nickname(dto.nickname())
 				.status(AccountStatus.ACTIVE)
 				.gender(dto.gender())
 				.build();
-		userRepository.save(user);
+		memberRepository.save(member);
 		return true;
 	}
 	
 	@Override
-	public UserLoginResponseDto login(UserLoginRequestDto body) {
+	public MemberLoginResponseDto login(MemberLoginRequestDto body) {
 		//인증에 필요한 정보를 담고, 인증 결과에 따라 인증된 사용자 정보와 권한 정보를 포함하는 Authentication 객체를 반환
 		UsernamePasswordAuthenticationToken authenticationToken =
 				new UsernamePasswordAuthenticationToken(body.email(),body.rawPassword());
@@ -64,6 +64,6 @@ public final class DefaultUserService implements UserService {
 				authenticationManager.authenticate(authenticationToken);
 		
 		//모든 과정이 문제가 없으면 authentication정보를 담은 토큰을 만들어줌
-		return new UserLoginResponseDto(tokenProvider.generateToken(authentication));
+		return new MemberLoginResponseDto(tokenProvider.generateToken(authentication));
 	}
 }

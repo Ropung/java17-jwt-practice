@@ -1,7 +1,7 @@
-package com.example.study.user.domain;
+package com.example.study.member.domain.member;
 
-import com.example.study.user.domain.type.AccountStatus;
-import com.example.study.user.domain.type.Gender;
+import com.example.study.member.domain.type.AccountStatus;
+import com.example.study.member.domain.type.Gender;
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
 import lombok.*;
@@ -18,11 +18,11 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 @AllArgsConstructor
 @Builder
 @Table(
-		name = MySchemaConstants.TB_USER,
+		name = MySchemaConstants.TB_MEMBER,
 		schema = MySchemaConstants.SCHEMA
 //		catalog = MySchemaConstants.SCHEMA
 )
-public class User extends UuidBaseEntity {
+public class Member extends UuidBaseEntity {
 	@Column
 	private String email;
 	@Column

@@ -1,7 +1,7 @@
 package com.example.study.config;
 
-import com.example.study.user.domain.User;
-import com.example.study.user.repository.UserRepository;
+import com.example.study.member.domain.member.Member;
+import com.example.study.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,20 +16,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthenticationUserMappingService implements UserDetailsService {
 	
-	private final UserRepository userRepository;
+	private final MemberRepository memberRepository;
 	
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<User> optionalUser = userRepository.findByEmail(email);
+		Optional<Member> optionalUser = memberRepository.findByEmail(email);
 		
 		if (optionalUser.isEmpty()) throw new UsernameNotFoundException("해당하는 이메일이 없습니다.");
 		
-		User user = optionalUser.get();
+		Member member = optionalUser.get();
 		
 		return org.springframework.security.core.userdetails.User
 				.withUsername(email)
-				.password(user.getPassword())
+				.password(member.getPassword())
 //				foo(String... params) << 가변인자
 				.authorities("USER")
 				.accountExpired(false)

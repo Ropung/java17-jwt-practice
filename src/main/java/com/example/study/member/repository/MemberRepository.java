@@ -1,15 +1,15 @@
-package com.example.study.user.repository;
+package com.example.study.member.repository;
 
-import com.example.study.user.domain.User;
-import com.example.study.user.projection.UserEmailNicknameProjection;
+import com.example.study.member.domain.member.Member;
+import com.example.study.member.projection.MemberEmailNicknameProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
-	Optional<User> findByEmail(String email);
-	boolean existsUsersByEmail(String email);
+public interface MemberRepository extends JpaRepository<Member, UUID> {
+	Optional<Member> findByEmail(String email);
+	boolean existsMemberByEmail(String email);
 	
 	// 컬럼 이름으로 여러 회원 조회
 	// List<Member> findAllBy컬럼이름(String 컬럼이름);
@@ -28,5 +28,5 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	// ===
 	
 	// Use Projection
-	UserEmailNicknameProjection findEmailAndNicknameByEmail(String email); // TODO test
+	MemberEmailNicknameProjection findEmailAndNicknameByEmail(String email); // TODO test
 }
