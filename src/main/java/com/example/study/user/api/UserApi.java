@@ -21,6 +21,12 @@ public class UserApi {
 	private final UserService userService;
 	
 	
+	@GetMapping("/hello")
+	public String hello() {
+		
+		return "hello";
+	}
+	
 	@PostMapping("/signup")
 	public UserSignUpResponseDto signUp(
 			@RequestBody @Valid UserSignUpRequestDto body,
@@ -45,14 +51,4 @@ public class UserApi {
 		return userService.login(body);
 	}
 	
-	@GetMapping("/hello")
-	public String hello() {
-		
-		return "hello";
-	}
-	
-//	@GetMapping("/signup/check/{email}/exists")
-//	public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String email) {
-//		return ResponseEntity.ok(memberService.checkEmailExists(email));
-//	}
 }
