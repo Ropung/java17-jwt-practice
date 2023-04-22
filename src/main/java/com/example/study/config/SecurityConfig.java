@@ -1,5 +1,6 @@
 package com.example.study.config;
 
+import com.example.study.config.jwt.AuthenticationFilter;
 import com.example.study.config.jwt.TokenProvider;
 import com.example.study.user.util.security.EncoderFactory;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -27,19 +29,25 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
+				// csrf 비활성화
 				.csrf().disable()
+				// 세션을 무상태(stateless)로 관리하겠다는 의미
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				
+				//fromLogin 비활성화
 				.and()
 				.formLogin().disable()
+				// HTTP 기본 인증 기능을 비활성화
 				.httpBasic().disable()
 				
 				.authorizeRequests()
-//				.antMatchers ("/api/**", "/login/**","/signup/**").permitAll ()
-				.anyRequest().permitAll();
+				// /api/hello에 대한 요청은 인증이 필요 없다
+				.antMatchers("/login","/signup").permitAll()
+				// 나머지 요청은 인증이 필요하다
+				.anyRequest().authenticated()
 				
-//				.and()
-//				.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
+				.and()
+				//인증때 토큰과, 유저가 맞는지 확인하는 설정
+				.addFilterBefore(new AuthenticationFilter(tokenProvider),UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 	
@@ -65,8 +73,8 @@ public class SecurityConfig {
 	// 2) jwt parser
 	// 3) authentication manager bean
 	// TODO below codes
-	//        UsernamePasswordAuthenticationToken authenticationToken =
-	//	    new UsernamePasswordAuthenticationToken(email, password);
+	// UsernamePasswordAuthenticationToken authenticationToken =
+	// new UsernamePasswordAuthenticationToken(email, password);
 		    // Auth -> throws AuthenticationException
 	//	    authenticationManager.authenticate(authenticationToken);
 	// String token = jwtProvider.createToken(...);
