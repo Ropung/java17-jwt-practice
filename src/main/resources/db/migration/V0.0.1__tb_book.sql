@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS joara_basic.book (
     id                  UUID                                PRIMARY KEY,
     member_id           UUID                                ,
     genre_id            UUID                                NOT NULL,
-    isbn_cip            VARCHAR(30)
+    isbn_cip            VARCHAR(30)                         ,
     book_title          VARCHAR(30)                         NOT NULL,
     book_description    TEXT                                NOT NULL,
     book_cover          VARCHAR(255)                        ,
@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS joara_basic.book (
     create_at           DATE                                NOT NULL,
     update_at           DATE                                ,
     delete_at           DATE
-
 );
 
 --작품태그 목록(BookTag)테이블

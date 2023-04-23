@@ -29,7 +29,7 @@ public record MemberRegisterDto() {
 	public record MemberLoginRequestDto(
 			String email,
 			@JsonProperty("password")
-			@Pattern(regexp =  "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
+			@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
 			String rawPassword
 	){}
 	public record MemberLoginResponseDto(

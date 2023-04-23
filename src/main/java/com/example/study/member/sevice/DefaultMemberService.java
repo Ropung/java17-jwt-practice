@@ -16,14 +16,13 @@ import static com.example.study.member.api.dto.MemberRegisterDto.*;
 @RequiredArgsConstructor
 public final class DefaultMemberService implements MemberService {
 	
-	
 	private final MemberRepository memberRepository;
-//	private final MemberMapper memberMapper;
-	private final AuthenticationManager authenticationManager;
 	
 	private final PasswordEncoder passwordEncoder;
 	private final TokenProvider tokenProvider;
+	private final AuthenticationManager authenticationManager;
 	
+	//	private final MemberMapper memberMapper;
 	
 	public boolean checkEmailExists(String email) {
 		return memberRepository.existsMemberByEmail(email);
