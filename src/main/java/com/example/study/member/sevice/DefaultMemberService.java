@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+
 import static com.example.study.member.api.dto.MemberRegisterDto.*;
 @Service
 @RequiredArgsConstructor
@@ -40,12 +42,19 @@ public final class DefaultMemberService implements MemberService {
 		String rawPassword = dto.rawPassword();
 		String digest = passwordEncoder.encode(rawPassword);
 		
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		OffsetDateTime birth = OffsetDateTime.parse(dto.birth() + "T00:00:00+09:00");
+		
 		Member member = Member.builder()
 				.email(dto.email())
 				.password(digest)
+				.name(dto.name())
 				.nickname(dto.nickname())
-				.status(AccountStatus.ACTIVE)
+				.phone(dto.phone())
 				.gender(dto.gender())
+				.birth(birth)
+				.status(AccountStatus.ACTIVE)
 				.build();
 		memberRepository.save(member);
 		return true;

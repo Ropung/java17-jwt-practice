@@ -37,7 +37,7 @@ public class Member extends UuidBaseEntity {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	@Column
-	private String birth;
+	private OffsetDateTime birth;
 	@Column
 	@Builder.Default
 	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);

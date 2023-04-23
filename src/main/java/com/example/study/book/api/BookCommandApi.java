@@ -24,6 +24,6 @@ public final class BookCommandApi {
 			@RequestBody @Valid BookAddRequestDto body,
 			HttpServletRequest request){
 		
-		return new BookAddResponseDto(bookCommandService.add(body));
+		return new BookAddResponseDto(bookCommandService.add(body, request));
 	}
 }

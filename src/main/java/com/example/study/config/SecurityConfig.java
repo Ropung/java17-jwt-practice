@@ -1,8 +1,14 @@
 package com.example.study.config;
 
 import com.example.study.config.jwt.AuthenticationFilter;
+import com.example.study.config.jwt.JwtProperties;
 import com.example.study.config.jwt.TokenProvider;
+import com.example.study.util.jwt.JwtPayloadParserBuilder;
 import com.example.study.util.security.EncoderFactory;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
+import java.security.Key;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -25,6 +32,8 @@ public class SecurityConfig {
 	private final DataSource dataSource;	// 임포트 패키지 주의
 	private final EncoderFactory encoderFactory;
 	private final TokenProvider tokenProvider;
+	private final JwtProperties jwtProperties;
+	
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -41,7 +50,7 @@ public class SecurityConfig {
 				
 				.authorizeRequests()
 				// /api/hello에 대한 요청은 인증이 필요 없다
-				.antMatchers("/login","/signup","/books").permitAll()
+				.antMatchers("/login","/signup").permitAll()
 				// 나머지 요청은 인증이 필요하다
 				.anyRequest().authenticated()
 				
@@ -58,16 +67,21 @@ public class SecurityConfig {
 		return encoderFactory.defaultEncoder();
 	}
 	
-//	@Bean
-//	public JwtParser jwtParser() {
-//		// Parsing -> g
-//		byte[] keyBytes = Decoders.BASE64.decode(secretKeyAsString);
-//		Key secretKey = Keys.hmacShaKeyFor(keyBytes);
-//
-//		return Jwts.parserBuilder()
-//				.setSigningKey(secretKey)
-//				.build();
-//	}
+	@Bean
+	public JwtParser jwtParser() {
+		// Parsing -> g
+		byte[] keyBytes = Decoders.BASE64.decode(jwtProperties.password());
+		Key secretKey = Keys.hmacShaKeyFor(keyBytes);
+
+		return Jwts.parserBuilder()
+				.setSigningKey(secretKey)
+				.build();
+	}
+	
+	@Bean
+	public JwtPayloadParserBuilder jwtPayloadParserBuilder(JwtParser jwtParser) {
+	    return JwtPayloadParserBuilder.withJwtParser(jwtParser);
+	}
 	
 	// 1) jwt token -> create(: provider)
 	// 2) jwt parser

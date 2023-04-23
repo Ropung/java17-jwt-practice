@@ -24,9 +24,9 @@ public class TokenProvider {
 	private final Key key;
 	
 	// properties에서 비밀키를 넣어주면 HMAC알고리즘화된 키를 반환 그게 위에키에 대입됨
-	public TokenProvider(Properties properties) {
+	public TokenProvider(JwtProperties jwtProperties) {
 		// Proerties에서 받은 비밀키를 64바이트로 디코드
-		byte[] secretByteKey = Decoders.BASE64.decode(properties.password());
+		byte[] secretByteKey = Decoders.BASE64.decode(jwtProperties.password());
 		// HMAC 알고리즘에서 사용할 수 있는 비밀 키를 생성
 		this.key = Keys.hmacShaKeyFor(secretByteKey);
 	}
@@ -43,13 +43,18 @@ public class TokenProvider {
 		String authorities = authentication.getAuthorities().stream()
 				.map(GrantedAuthority ::getAuthority)
 				.collect(Collectors.joining(","));
+		String email = authentication.getName();
+		
+		Claims claims = Jwts.claims().setSubject(email);
+		claims.put("auth", authorities);
+		claims.put("nickname", "닉네임들어가는지확인");
 		
 		//Access Token 생성
 		return Jwts.builder()
 				// JWT를 소유하고 있는 사용자의 식별자 정보를 저장하는 데 사용
 				.setSubject(authentication.getName())
 				// payload 넣어주는곳
-				.claim("auth", authorities)
+				.setClaims(claims)
 				//토큰 기한
 				.setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 30))
 				// Signature

@@ -12,7 +12,10 @@ public record MemberRegisterDto() {
 		@JsonProperty("password")
 		@Pattern(regexp =  "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
 		String rawPassword,
+		String name,
 		String nickname,
+		String phone,
+		String birth,
 		@EnumMapping()
 		Gender gender
 		){
