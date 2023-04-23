@@ -1,12 +1,11 @@
 package com.example.study.member.domain.episode;
 
+import com.example.study.member.domain.episode.type.EpisodeStatus;
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -36,6 +35,9 @@ public class Episode extends UuidBaseEntity {
 	private String epiCover;
 	@Column
 	private Integer epiViewCount;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private EpisodeStatus epiStatus;
 	@Column
 	@Builder.Default
 	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);

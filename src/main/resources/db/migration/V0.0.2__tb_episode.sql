@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS joara_basic.epi (
     epi_review          VARCHAR(30)                         ,
     epi_cover           VARCHAR(255)                        ,
     epi_view_count      BIGINT                              DEFAULT 0,
+    epi_status          VARCHAR(30)                         DEFAULT 'PENDING',
     create_at           DATE                                NOT NULL,
     update_at           DATE                                ,
     delete_at           DATE
