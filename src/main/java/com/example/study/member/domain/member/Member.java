@@ -28,15 +28,25 @@ public class Member extends UuidBaseEntity {
 	@Column
 	private String password;
 	@Column
+	private String name;
+	@Column
 	private String nickname;
 	@Column
-	@Enumerated(EnumType.STRING)
-	private AccountStatus status;
+	private String phone;
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	@Column
+	private String birth;
+	@Column
 	@Builder.Default
-	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
+	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
+	@Column
+	private OffsetDateTime updateAt;
+	@Column
+	private OffsetDateTime deleteAt;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private AccountStatus status;
 }
 

@@ -30,7 +30,7 @@ public class EpisodeReply extends UuidBaseEntity {
 	private String epiReply;
 	@Column
 	@Builder.Default
-	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
+	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
 	@Column
 	private OffsetDateTime updateAt;
 	@Column
