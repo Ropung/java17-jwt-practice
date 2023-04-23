@@ -1,4 +1,4 @@
-package com.example.study.member.util.security;
+package com.example.study.util.security;
 
 
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class EncoderFactory {
 	public enum EncoderType {
 		BCRYPT,
 		PBKDF2,
-		SCRYPT;
+		SCRYPT
 	}
 	
 	public PasswordEncoder defaultEncoder() {

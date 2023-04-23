@@ -10,12 +10,13 @@ CREATE TABLE IF NOT EXISTS joara_basic.book_genre (
 CREATE TABLE IF NOT EXISTS joara_basic.book (
     id                  UUID                                PRIMARY KEY,
     member_id           UUID                                ,
-    genre_id            UUID                                NOT NULL,
-    isbn_cip            VARCHAR(30)                         ,
+    genre_id            UUID                                ,
+    isbn                VARCHAR(50)                         ,
+    cip                 VARCHAR(50)                         ,
     book_title          VARCHAR(30)                         NOT NULL,
     book_description    TEXT                                NOT NULL,
     book_cover          VARCHAR(255)                        ,
-    avg_score           INTEGER                             ,
+    avg_score           DOUBLE PRECISION                    ,
     create_at           DATE                                NOT NULL,
     update_at           DATE                                ,
     delete_at           DATE

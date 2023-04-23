@@ -1,4 +1,4 @@
-package com.example.study.member.domain.book;
+package com.example.study.book.domain;
 
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
@@ -29,7 +29,9 @@ public class Book extends UuidBaseEntity {
 	@Column
 	private UUID genreId;
 	@Column
-	private String ISBN_CIP;
+	private String isbn;
+	@Column
+	private String cip;
 	@Column
 	private String bookTitle;
 	@Column
@@ -37,7 +39,8 @@ public class Book extends UuidBaseEntity {
 	@Column
 	private String bookCover;
 	@Column
-	private Integer avgScore;
+	@Builder.Default
+	private Double avgScore = 0.;
 	@Column
 	@Builder.Default
 	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);

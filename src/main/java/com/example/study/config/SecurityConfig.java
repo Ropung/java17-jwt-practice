@@ -2,7 +2,7 @@ package com.example.study.config;
 
 import com.example.study.config.jwt.AuthenticationFilter;
 import com.example.study.config.jwt.TokenProvider;
-import com.example.study.member.util.security.EncoderFactory;
+import com.example.study.util.security.EncoderFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +41,7 @@ public class SecurityConfig {
 				
 				.authorizeRequests()
 				// /api/hello에 대한 요청은 인증이 필요 없다
-				.antMatchers("/login","/signup").permitAll()
+				.antMatchers("/login","/signup","/books").permitAll()
 				// 나머지 요청은 인증이 필요하다
 				.anyRequest().authenticated()
 				

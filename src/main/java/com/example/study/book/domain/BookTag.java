@@ -1,4 +1,4 @@
-package com.example.study.member.domain.book;
+package com.example.study.book.domain;
 
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -15,11 +16,13 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Builder
 @Table(
-		name = MySchemaConstants.TB_BOOK_GENRE,
+		name = MySchemaConstants.TB_BOOK_TAG,
 		schema = MySchemaConstants.SCHEMA
 		//		catalog = MySchemaConstants.SCHEMA
 )
-public class BookGenre extends UuidBaseEntity {
+public class BookTag extends UuidBaseEntity {
 	@Column
-	private String genreName;
+	private UUID bookId;
+	@Column
+	private UUID bookFreeTagId;
 }
