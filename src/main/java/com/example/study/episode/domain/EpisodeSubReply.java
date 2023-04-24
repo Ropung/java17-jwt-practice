@@ -1,11 +1,12 @@
-package com.example.study.member.domain.episode;
+package com.example.study.episode.domain;
 
-import com.example.study.member.domain.episode.type.EpisodeStatus;
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -18,26 +19,15 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 @AllArgsConstructor
 @Builder
 @Table(
-		name = MySchemaConstants.TB_EPI,
+		name = MySchemaConstants.TB_EPI_SUB_REPLY,
 		schema = MySchemaConstants.SCHEMA
 		//		catalog = MySchemaConstants.SCHEMA
 )
-public class Episode extends UuidBaseEntity {
+public class EpisodeSubReply extends UuidBaseEntity {
 	@Column
-	private UUID bookId;
+	private UUID epiSubReplyId;
 	@Column
-	private String epiTitle;
-	@Column
-	private String epiContent;
-	@Column
-	private String epiReview;
-	@Column
-	private String epiCover;
-	@Column
-	private Integer epiViewCount;
-	@Column
-	@Enumerated(EnumType.STRING)
-	private EpisodeStatus epiStatus;
+	private String epiSubReplyContent;
 	@Column
 	@Builder.Default
 	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
@@ -45,4 +35,6 @@ public class Episode extends UuidBaseEntity {
 	private OffsetDateTime updateAt;
 	@Column
 	private OffsetDateTime deleteAt;
+	
+	
 }

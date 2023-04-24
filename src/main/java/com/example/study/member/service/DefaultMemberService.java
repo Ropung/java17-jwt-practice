@@ -1,7 +1,7 @@
-package com.example.study.member.sevice;
+package com.example.study.member.service;
 
 import com.example.study.config.jwt.TokenProvider;
-import com.example.study.member.domain.member.Member;
+import com.example.study.member.domain.Member;
 import com.example.study.member.domain.type.AccountStatus;
 import com.example.study.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,8 +42,6 @@ public final class DefaultMemberService implements MemberService {
 		String rawPassword = dto.rawPassword();
 		String digest = passwordEncoder.encode(rawPassword);
 		
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		
 		OffsetDateTime birth = OffsetDateTime.parse(dto.birth() + "T00:00:00+09:00");
 		
 		Member member = Member.builder()
@@ -62,16 +60,12 @@ public final class DefaultMemberService implements MemberService {
 	
 	@Override
 	public MemberLoginResponseDto login(MemberLoginRequestDto body) {
-		//인증에 필요한 정보를 담고, 인증 결과에 따라 인증된 사용자 정보와 권한 정보를 포함하는 Authentication 객체를 반환
+		
 		UsernamePasswordAuthenticationToken authenticationToken =
 				new UsernamePasswordAuthenticationToken(body.email(),body.rawPassword());
-		
-		// 사용자 인증 및 권한 검사를 수행
 		Authentication authentication =
-				//인증이 성공한 경우 Authentication 객체는 인증된 사용자 정보와 권한 정보를 포함
 				authenticationManager.authenticate(authenticationToken);
 		
-		//모든 과정이 문제가 없으면 authentication정보를 담은 토큰을 만들어줌
 		return new MemberLoginResponseDto(tokenProvider.generateToken(authentication));
 	}
 }

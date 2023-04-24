@@ -33,7 +33,7 @@ public final class DefaultBookCommandService implements BookCommandService {
 		
 		Book book = Book.builder()
 				.bookTitle(dto.title())
-				//TODO 파일 넣는법 공부해서 적용하기(파일경로로할껀지)
+				// TODO 파일 넣는법 공부해서 적용하기(파일경로로할껀지)
 				.bookCover(null)
 				.bookDescription(dto.description())
 				.memberId(memberId)

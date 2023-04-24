@@ -1,4 +1,4 @@
-package com.example.study.member.domain.episode;
+package com.example.study.episode.domain;
 
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
@@ -19,15 +19,15 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 @AllArgsConstructor
 @Builder
 @Table(
-		name = MySchemaConstants.TB_EPI_SUB_REPLY,
+		name = MySchemaConstants.TB_EPI_REPLY,
 		schema = MySchemaConstants.SCHEMA
 		//		catalog = MySchemaConstants.SCHEMA
 )
-public class EpisodeSubReply extends UuidBaseEntity {
+public class EpisodeReply extends UuidBaseEntity {
 	@Column
-	private UUID epiSubReplyId;
+	private UUID epiId;
 	@Column
-	private String epiSubReplyContent;
+	private String epiReply;
 	@Column
 	@Builder.Default
 	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);

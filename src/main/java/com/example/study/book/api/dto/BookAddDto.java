@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 public record BookAddDto() {
 	
+	// TODO 장르 아이디 받아 올 것
 	public record BookAddRequestDto(
 			@Size(max = 30, min = 3) String title,
 			@Size(max = 255) String description,

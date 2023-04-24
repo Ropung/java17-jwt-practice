@@ -1,4 +1,4 @@
-package com.example.study.member.domain.episode.type;
+package com.example.study.episode.domain.type;
 
 public enum EpisodeStatus {
 	PENDING,

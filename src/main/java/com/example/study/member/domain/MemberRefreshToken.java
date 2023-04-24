@@ -1,4 +1,4 @@
-package com.example.study.member.domain.member;
+package com.example.study.member.domain;
 
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
@@ -19,18 +19,18 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 @AllArgsConstructor
 @Builder
 @Table(
-		name = MySchemaConstants.TB_FAVOR_BOOK,
+		name = MySchemaConstants.TB_Refresh,
 		schema = MySchemaConstants.SCHEMA
 		//		catalog = MySchemaConstants.SCHEMA
 )
-public class MemberFavorBook extends UuidBaseEntity {
+public class MemberRefreshToken extends UuidBaseEntity {
 	@Column
 	private UUID memberId;
 	@Column
-	private UUID bookId;
-	@Column
-	private String favorBookName;
+	private String refreshToken;
 	@Column
 	@Builder.Default
 	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
+	@Column
+	private OffsetDateTime deleteAt;
 }

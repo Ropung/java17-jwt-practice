@@ -1,6 +1,6 @@
 package com.example.study.member.repository;
 
-import com.example.study.member.domain.member.Member;
+import com.example.study.member.domain.Member;
 import com.example.study.member.projection.MemberEmailNicknameProjection;
 import com.example.study.member.projection.MemberQueryProjection.*;
 import org.springframework.data.jpa.repository.JpaRepository;

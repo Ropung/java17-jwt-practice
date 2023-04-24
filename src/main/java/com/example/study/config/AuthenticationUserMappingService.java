@@ -1,6 +1,6 @@
 package com.example.study.config;
 
-import com.example.study.member.domain.member.Member;
+import com.example.study.member.domain.Member;
 import com.example.study.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,7 @@
 package com.example.study.config;
 
 import com.example.study.config.jwt.AuthenticationFilter;
-import com.example.study.config.jwt.JwtProperties;
+import com.example.study.properties.jwt.JwtProperties;
 import com.example.study.config.jwt.TokenProvider;
 import com.example.study.util.jwt.JwtPayloadParserBuilder;
 import com.example.study.util.security.EncoderFactory;
@@ -38,25 +38,18 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
-				// csrf 비활성화
 				.csrf().disable()
-				// 세션을 무상태(stateless)로 관리하겠다는 의미
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				//fromLogin 비활성화
-				.and()
-				.formLogin().disable()
-				// HTTP 기본 인증 기능을 비활성화
 				.httpBasic().disable()
+				.formLogin().disable()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				
+				.and()
 				.authorizeRequests()
-				// /api/hello에 대한 요청은 인증이 필요 없다
 				.antMatchers("/login","/signup").permitAll()
-				// 나머지 요청은 인증이 필요하다
 				.anyRequest().authenticated()
 				
 				.and()
-				//인증때 토큰과, 유저가 맞는지 확인하는 설정
-				.addFilterBefore(new AuthenticationFilter(tokenProvider),UsernamePasswordAuthenticationFilter.class);
+				.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 	

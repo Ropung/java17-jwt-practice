@@ -1,4 +1,4 @@
-package com.example.study.member.sevice;
+package com.example.study.member.service;
 
 import static com.example.study.member.api.dto.MemberRegisterDto.*;
 
