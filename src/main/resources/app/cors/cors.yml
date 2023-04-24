@@ -1,0 +1,10 @@
+app:
+  security:
+    cors:
+      exposed-headers: "*"
+      allowed:
+        methods: "*"
+        headers: "*"
+        origins:
+          - https://ropung.github.io/react-joara-front/
+        credentials: true
