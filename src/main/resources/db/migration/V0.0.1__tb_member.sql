@@ -1,6 +1,3 @@
---스키마 이름
-CREATE SCHEMA IF NOT EXISTS joara_basic;
-
 --토큰(Token)테이블
 CREATE TABLE IF NOT EXISTS joara_basic.refresh_token (
     id                  UUID                                PRIMARY KEY,
