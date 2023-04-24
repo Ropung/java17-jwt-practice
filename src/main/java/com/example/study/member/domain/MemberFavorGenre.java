@@ -1,4 +1,4 @@
-package com.example.study.member.domain.member;
+package com.example.study.member.domain;
 
 import com.example.study.support.MySchemaConstants;
 import com.example.study.support.UuidBaseEntity;
