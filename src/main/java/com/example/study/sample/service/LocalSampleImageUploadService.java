@@ -1,6 +1,7 @@
 package com.example.study.sample.service;
 
 import com.example.study.sample.properties.SampleImageProperties;
+import com.example.study.util.upload.DailyFileNameGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -17,22 +18,22 @@ import static com.example.study.sample.dto.SampleImageUploadDto.SampleImageUploa
 public class LocalSampleImageUploadService implements SampleImageUploadService {
 	
 	private final SampleImageProperties sampleImageProperties;
+	private final DailyFileNameGenerator dailyFileNameGenerator;
 	
 	@Override
 	public SampleImageUploadResponseDto upload(MultipartFile file) {
 		String url = sampleImageProperties.uploadUrl();
-		File folder = new File(url);
-		
-		if (!folder.exists()) {
-			folder.mkdirs();
-		}
 		
 		url = url.endsWith("/") ? url : url + "/";
 		
 		if (!file.isEmpty()) {
-			url += file.getOriginalFilename();
-			
+			url += dailyFileNameGenerator.generateWithFullPath(file.getOriginalFilename());
 			log.info("파일 저장 fullPath={}", url);
+			
+			File folder = new File(url);
+			if (!folder.exists()) {
+				folder.mkdirs();
+			}
 			
 			try {
 				file.transferTo(new File(url));
