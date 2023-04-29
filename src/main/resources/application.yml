@@ -4,8 +4,8 @@ server:
 spring:
   config:
     import:
-      - classpath:/app/jwt/jwt.yml
-      - classpath:/app/cors/cors.yml
+      - classpath:app/jwt/jwt.yml
+      - classpath:app/cors/cors.yml
   data:
     redis:
       host: localhost

@@ -27,18 +27,20 @@ public final class DefaultBookCommandService implements BookCommandService {
 		JwtPayloadParser payloadParser = jwtPayloadParserBuilder.buildWith(request);
 		String email = payloadParser.subject();
 		
+		// 유저 아이디
 		UUID memberId = memberRepository.findIdByEmail(email)
 				.orElseThrow(IllegalStateException::new)
 				.id();
 		
 		Book book = Book.builder()
-				.bookTitle(dto.title())
+				.memberId(memberId)
+//				.genreId()
+				.bookTitle(dto.bookTitle())
+				.bookDescription(dto.bookDescription())
 				// TODO 파일 넣는법 공부해서 적용하기(파일경로로할껀지)
 				.bookCover(null)
-				.bookDescription(dto.description())
-				.memberId(memberId)
-				.cip(dto.cip())
-				.isbn(dto.isbn())
+				.isbn(dto.bookIsbn())
+				.cip(dto.bookCip())
 				.build();
 		
 		bookRepository.save(book);

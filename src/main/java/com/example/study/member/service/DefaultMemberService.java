@@ -36,12 +36,12 @@ public final class DefaultMemberService implements MemberService {
 		boolean check = checkEmailExists(dto.email());
 		
 		if (check) {
-			throw new IllegalArgumentException("이미 존재하는 유저입니다.");
+//			throw new IllegalArgumentException("이미 존재하는 유저입니다.");
+			return false;
 		}
 		
 		String rawPassword = dto.rawPassword();
 		String digest = passwordEncoder.encode(rawPassword);
-		
 		OffsetDateTime birth = OffsetDateTime.parse(dto.birth() + "T00:00:00+09:00");
 		
 		Member member = Member.builder()

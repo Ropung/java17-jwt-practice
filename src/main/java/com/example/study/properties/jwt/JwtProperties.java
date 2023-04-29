@@ -3,7 +3,7 @@ package com.example.study.properties.jwt;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 
-@ConfigurationProperties(prefix = "jwt")
+@ConfigurationProperties(prefix = "app.jwt")
 @ConfigurationPropertiesBinding
 public record JwtProperties(
 		//1. 토큰 Properties에서 jwt 비밀번호를 가져온다.

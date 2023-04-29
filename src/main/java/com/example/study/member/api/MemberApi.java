@@ -1,6 +1,5 @@
 package com.example.study.member.api;
 
-import com.example.study.member.api.dto.MemberRegisterDto;
 import com.example.study.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,20 +16,16 @@ import static com.example.study.member.api.dto.MemberRegisterDto.*;
 @RestController
 @RequiredArgsConstructor
 public class MemberApi {
-
 	private final MemberService memberService;
-	
-	
 	
 	@PostMapping("/signup")
 	public MemberSignUpResponseDto signUp(
-			@RequestBody @Valid MemberRegisterDto.MemberSignUpRequestDto body,
+			@RequestBody @Valid MemberSignUpRequestDto body,
 			HttpServletRequest request
 			)
 	{
-		String ip = request.getHeader("X-Forwarded-For");
-		if (ip == null) ip = request.getRemoteAddr();
-		
+//		String ip = request.getHeader("X-Forwarded-For");
+//		if (ip == null) ip = request.getRemoteAddr();
 		return new MemberSignUpResponseDto( memberService.signUp(body) );
 	}
 	
@@ -40,9 +35,8 @@ public class MemberApi {
 			HttpServletRequest request
 	)
 	{
-		String ip = request.getHeader("X-Forwarded-For");
-		if (ip == null) ip = request.getRemoteAddr();
-		
+//		String ip = request.getHeader("X-Forwarded-For");
+//		if (ip == null) ip = request.getRemoteAddr();
 		return memberService.login(body);
 	}
 	
