@@ -1,5 +1,0 @@
-app:
-  sample:
-    files:
-      target: s3
-      upload-url: https://abc.com/image

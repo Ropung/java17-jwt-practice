@@ -1,6 +1,6 @@
-package com.example.study.sample.service;
+package com.example.study.upload.service;
 
-import com.example.study.sample.properties.SampleImageProperties;
+import com.example.study.properties.upload.UploadImageProperties;
 import com.example.study.util.upload.DailyFileNameGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -10,19 +10,18 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
-import static com.example.study.sample.dto.SampleImageUploadDto.SampleImageUploadResponseDto;
+import static com.example.study.upload.api.dto.UploadImageDto.UploadImageResponseDto;
 
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class LocalSampleImageUploadService implements SampleImageUploadService {
+public class LocalUploadImageService implements UploadImageService{
 	
-	private final SampleImageProperties sampleImageProperties;
+	private final UploadImageProperties uploadImageProperties;
 	private final DailyFileNameGenerator dailyFileNameGenerator;
-	
 	@Override
-	public SampleImageUploadResponseDto upload(MultipartFile file) {
-		String url = sampleImageProperties.uploadUrl();
+	public UploadImageResponseDto upload(MultipartFile file) {
+		String url = uploadImageProperties.uploadUrl();
 		
 		url = url.endsWith("/") ? url : url + "/";
 		
@@ -42,7 +41,7 @@ public class LocalSampleImageUploadService implements SampleImageUploadService {
 			}
 		}
 		
-		return SampleImageUploadResponseDto.builder()
+		return UploadImageResponseDto.builder()
 				.url(url)
 				.build();
 	}

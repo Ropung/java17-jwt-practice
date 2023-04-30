@@ -1,16 +1,17 @@
-package com.example.study.sample.properties;
+package com.example.study.properties.upload;
 
-import com.example.study.sample.properties.type.ImageStorageTargetType;
+import com.example.study.properties.upload.type.ImageStorageTargetType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 
-@ConfigurationProperties(prefix = "app.sample.files")
+
+@ConfigurationProperties(prefix = "app.upload.files")
 @ConfigurationPropertiesBinding
-public record SampleImageProperties(
+public record UploadImageProperties(
 		ImageStorageTargetType target,
 		String uploadUrl
 ) {
-	public SampleImageProperties {
+	public UploadImageProperties {
 		if (target == null) {
 			target = ImageStorageTargetType.LOCAL;
 		}
