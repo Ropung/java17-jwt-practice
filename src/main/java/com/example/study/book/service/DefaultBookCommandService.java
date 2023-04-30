@@ -4,14 +4,18 @@ import com.example.study.book.api.dto.BookAddDto.BookAddRequestDto;
 import com.example.study.book.domain.Book;
 import com.example.study.book.repository.BookRepository;
 import com.example.study.member.repository.MemberRepository;
+import com.example.study.upload.service.LocalUploadImageService;
 import com.example.study.util.jwt.JwtPayloadParser;
 import com.example.study.util.jwt.JwtPayloadParserBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
+
+import static com.example.study.upload.api.dto.UploadImageDto.UploadImageResponseDto;
 
 @Service
 @Primary
@@ -21,10 +25,15 @@ public final class DefaultBookCommandService implements BookCommandService {
 	private final BookRepository bookRepository;
 	private final MemberRepository memberRepository;
 	private final JwtPayloadParserBuilder jwtPayloadParserBuilder;
+	private final LocalUploadImageService localUploadImageService;
+	
+	
 	
 	@Override
-	public boolean add(BookAddRequestDto dto, HttpServletRequest request) {
+	public boolean add(BookAddRequestDto dto, MultipartFile file ,HttpServletRequest request) {
+		
 		JwtPayloadParser payloadParser = jwtPayloadParserBuilder.buildWith(request);
+		
 		String email = payloadParser.subject();
 		
 		// 유저 아이디
@@ -32,18 +41,22 @@ public final class DefaultBookCommandService implements BookCommandService {
 				.orElseThrow(IllegalStateException::new)
 				.id();
 		
+		//(로컬)파일 경로
+		UploadImageResponseDto uploadedPath = localUploadImageService.upload(file);
+		
 		Book book = Book.builder()
 				.memberId(memberId)
-//				.genreId()
-				.bookTitle(dto.bookTitle())
-				.bookDescription(dto.bookDescription())
-				// TODO 파일 넣는법 공부해서 적용하기(파일경로로할껀지)
-				.bookCover(null)
-				.isbn(dto.bookIsbn())
-				.cip(dto.bookCip())
+				.genreId(dto.genreId())
+				.title(dto.title())
+				.description(dto.description())
+				.url(uploadedPath.url())
+				.isbn(dto.isbn())
+				.cip(dto.cip())
 				.build();
-		
 		bookRepository.save(book);
+		
 		return true;
 	}
+	
+
 }

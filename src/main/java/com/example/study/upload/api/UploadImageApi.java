@@ -33,10 +33,8 @@ public class UploadImageApi {
 	
 	@PostMapping("/image")
 	public UploadImageResponseDto uploadImage(UploadImageRequestDto params){
-		log.info("탔니?{}",params);
 		UploadImageResponseDto result =  uploadImageService.upload(params.file());
-		String fileNameWithFullPath = result.url();
-		return result;
+		return new UploadImageResponseDto(result.url());
 	}
 	
 }

@@ -33,11 +33,11 @@ public class Book extends UuidBaseEntity {
 	@Column
 	private String cip;
 	@Column
-	private String bookTitle;
+	private String title;
 	@Column
-	private String bookDescription;
+	private String description;
 	@Column
-	private String bookCover;
+	private String url;
 	@Column
 	@Builder.Default
 	private Double avgScore = 0.;
