@@ -15,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
-import static com.example.study.upload.api.dto.UploadImageDto.UploadImageResponseDto;
-
 @Service
 @Primary
 @RequiredArgsConstructor
@@ -41,15 +39,13 @@ public final class DefaultBookCommandService implements BookCommandService {
 				.orElseThrow(IllegalStateException::new)
 				.id();
 		
-		//(로컬)파일 경로
-		UploadImageResponseDto uploadedPath = localUploadImageService.upload(file);
-		
 		Book book = Book.builder()
 				.memberId(memberId)
 				.genreId(dto.genreId())
 				.title(dto.title())
 				.description(dto.description())
-				.url(uploadedPath.url())
+				//로컬에 파일 저장하고 url 반환받은 값 디비에 저장
+				.coverUrl(localUploadImageService.upload(file).url())
 				.isbn(dto.isbn())
 				.cip(dto.cip())
 				.build();

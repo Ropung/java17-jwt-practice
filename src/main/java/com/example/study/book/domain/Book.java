@@ -37,7 +37,7 @@ public class Book extends UuidBaseEntity {
 	@Column
 	private String description;
 	@Column
-	private String url;
+	private String coverUrl;
 	@Column
 	@Builder.Default
 	private Double avgScore = 0.;

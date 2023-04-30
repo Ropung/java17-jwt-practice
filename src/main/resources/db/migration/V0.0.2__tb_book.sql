@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS joara_basic.book (
     cip                 VARCHAR(50)                         ,
     title               VARCHAR(30)                         NOT NULL,
     description         TEXT                                NOT NULL,
-    url                 VARCHAR(255)                        ,
+    cover_url                 VARCHAR(255)                        ,
     avg_score           DOUBLE PRECISION                    ,
     create_at           DATE                                NOT NULL,
     update_at           DATE                                ,
