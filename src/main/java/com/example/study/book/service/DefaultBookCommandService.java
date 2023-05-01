@@ -25,8 +25,6 @@ public final class DefaultBookCommandService implements BookCommandService {
 	private final JwtPayloadParserBuilder jwtPayloadParserBuilder;
 	private final LocalUploadImageService localUploadImageService;
 	
-	
-	
 	@Override
 	public boolean add(BookAddRequestDto dto, MultipartFile file ,HttpServletRequest request) {
 		
@@ -39,13 +37,20 @@ public final class DefaultBookCommandService implements BookCommandService {
 				.orElseThrow(IllegalStateException::new)
 				.id();
 		
+		String coverUrl = "";
+		if(file == null || file.equals("")){
+			coverUrl = null;
+		}else {
+			coverUrl = localUploadImageService.upload(file).url();
+		}
+		
+		
 		Book book = Book.builder()
 				.memberId(memberId)
 				.genreId(dto.genreId())
 				.title(dto.title())
 				.description(dto.description())
-				//로컬에 파일 저장하고 url 반환받은 값 디비에 저장
-				.coverUrl(localUploadImageService.upload(file).url())
+				.coverUrl(coverUrl)
 				.isbn(dto.isbn())
 				.cip(dto.cip())
 				.build();

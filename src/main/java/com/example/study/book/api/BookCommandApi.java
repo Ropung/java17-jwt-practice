@@ -19,7 +19,7 @@ public final class BookCommandApi {
 	
 	@PostMapping("/add")
 	public BookAddResponseDto bookAddResponseDto(
-			@RequestParam("file") MultipartFile file,
+			@RequestParam("coverUrl") MultipartFile file,
 			@ModelAttribute @Valid BookAddRequestDto body,
 			HttpServletRequest request
 			){

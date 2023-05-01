@@ -29,15 +29,15 @@ public class Book extends UuidBaseEntity {
 	@Column
 	private UUID genreId;
 	@Column
-	private String isbn;
-	@Column
-	private String cip;
-	@Column
 	private String title;
 	@Column
 	private String description;
 	@Column
 	private String coverUrl;
+	@Column
+	private String isbn;
+	@Column
+	private String cip;
 	@Column
 	@Builder.Default
 	private Double avgScore = 0.;
@@ -48,7 +48,5 @@ public class Book extends UuidBaseEntity {
 	private OffsetDateTime updateAt;
 	@Column
 	private OffsetDateTime deleteAt;
-
-
 }
 
