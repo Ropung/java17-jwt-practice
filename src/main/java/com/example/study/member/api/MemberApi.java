@@ -33,8 +33,7 @@ public class MemberApi {
 	public MemberLoginResponseDto login(
 			@RequestBody MemberLoginRequestDto body,
 			HttpServletRequest request
-	)
-	{
+	) {
 //		String ip = request.getHeader("X-Forwarded-For");
 //		if (ip == null) ip = request.getRemoteAddr();
 		return memberService.login(body);

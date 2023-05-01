@@ -10,7 +10,10 @@ public record MemberRegisterDto() {
 	public record MemberSignUpRequestDto(
 		String email,
 		@JsonProperty("password")
-		@Pattern(regexp =  "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
+		@Pattern(
+				regexp =  "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$",
+				message = "비밀번호 양식을 확인해주세요."
+		)
 		String rawPassword,
 		String name,
 		String nickname,

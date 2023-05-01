@@ -7,8 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import static com.example.study.upload.api.dto.UploadImageDto.UploadImageResponseDto;
 

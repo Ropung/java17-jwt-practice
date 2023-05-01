@@ -24,8 +24,14 @@ public class AuthenticationUserMappingService implements UserDetailsService {
 		Optional<Member> optionalUser = memberRepository.findByEmail(email);
 		
 		if (optionalUser.isEmpty()) throw new UsernameNotFoundException("해당하는 이메일이 없습니다.");
-		
+
 		Member member = optionalUser.get();
+		
+		// 한 줄로 축약은 가능함.
+//		Member member = optionalUser
+//				.orElseThrow(() -> new UsernameNotFoundException("해당하는 이메일이 없습니다."));
+//		Member member = optionalUser
+//				.orElseThrow(SignupFailureErrorCode.DEFAULT::defaultException);
 		
 		return org.springframework.security.core.userdetails.User
 				.withUsername(email)

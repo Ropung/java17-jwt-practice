@@ -1,8 +1,8 @@
 package com.example.study.config;
 
 import com.example.study.config.jwt.AuthenticationFilter;
-import com.example.study.properties.jwt.JwtProperties;
 import com.example.study.config.jwt.TokenProvider;
+import com.example.study.properties.jwt.JwtProperties;
 import com.example.study.util.jwt.JwtPayloadParserBuilder;
 import com.example.study.util.security.EncoderFactory;
 import io.jsonwebtoken.JwtParser;
@@ -43,14 +43,16 @@ public class SecurityConfig {
 				.formLogin().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				
+				
 				.and()
 				.authorizeRequests()
-				.antMatchers("/login","/signup","/books/*").permitAll()
-//				.anyRequest().authenticated()
-				.anyRequest().permitAll()
+				.antMatchers("/login","/signup","/books/add").permitAll()
+				.anyRequest().authenticated()
+//				.anyRequest().permitAll()
 				
 				.and()
 				.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
+		
 		return http.build();
 	}
 	
