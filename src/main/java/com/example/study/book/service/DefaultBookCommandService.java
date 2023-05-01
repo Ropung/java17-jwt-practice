@@ -37,13 +37,13 @@ public final class DefaultBookCommandService implements BookCommandService {
 				.orElseThrow(IllegalStateException::new)
 				.id();
 		
-		String coverUrl = "";
-		if(file == null || file.equals("")){
-			coverUrl = null;
-		}else {
+		String coverUrl = null;
+		if (file != null) {
 			coverUrl = localUploadImageService.upload(file).url();
 		}
 		
+		// if ( ... ) return true;
+		// if ( ... ) throw MyErrorCodeEnum.NOT_FOUND.defaultException();
 		
 		Book book = Book.builder()
 				.memberId(memberId)
