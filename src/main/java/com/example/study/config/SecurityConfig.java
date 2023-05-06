@@ -1,6 +1,5 @@
 package com.example.study.config;
 
-import com.example.study.config.jwt.AuthenticationFilter;
 import com.example.study.config.jwt.TokenProvider;
 import com.example.study.properties.jwt.JwtProperties;
 import com.example.study.util.jwt.JwtPayloadParserBuilder;
@@ -19,7 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 import java.security.Key;
@@ -43,15 +41,14 @@ public class SecurityConfig {
 				.formLogin().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				
-				
 				.and()
 				.authorizeRequests()
 				.antMatchers("/login","/signup","/books/add").permitAll()
-				.anyRequest().authenticated()
-//				.anyRequest().permitAll()
+//				.anyRequest().authenticated()
+				.anyRequest().permitAll();
 				
-				.and()
-				.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
+				//.and()
+				//.addFilterBefore(new AuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
 	}

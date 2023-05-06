@@ -3,7 +3,11 @@
 --작품(BookGenre)장르 테이블
 CREATE TABLE IF NOT EXISTS joara_basic.book_genre (
     id                  UUID                                PRIMARY KEY,
-    genre_name          VARCHAR(30)                         NOT NULL
+    kor                 VARCHAR(255),
+    eng                 VARCHAR(255),
+
+    CONSTRAINT uq_book_genre_kor UNIQUE(kor),
+    CONSTRAINT uq_book_genre_eng UNIQUE(eng)
 );
 
 --작품(Book)테이블,  SEQUENCE 추가

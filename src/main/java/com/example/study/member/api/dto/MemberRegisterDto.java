@@ -23,10 +23,10 @@ public record MemberRegisterDto() {
 		Gender gender
 		){
 		// 초깃값이나 예외 등을 줄 수 있음(소괄호 안 쓰는 생성자)
-		//        public MemberSignUpRequestDto {
-		//            if (email == null) email = "";
-		//            // ...
-		//        }
+//		        public MemberSignUpRequestDto {
+//		            if (gender == null) gender = "남자";
+//		            // ...
+//		        }
 		}
 		public record MemberSignUpResponseDto(
 				boolean success
@@ -41,5 +41,7 @@ public record MemberRegisterDto() {
 	public record MemberLoginResponseDto(
 			String token
 	){}
+	
+	
 	
 }

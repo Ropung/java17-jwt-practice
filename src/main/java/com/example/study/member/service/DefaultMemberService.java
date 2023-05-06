@@ -18,8 +18,8 @@ import static com.example.study.member.api.dto.MemberRegisterDto.*;
 @RequiredArgsConstructor
 public final class DefaultMemberService implements MemberService {
 	
+
 	private final MemberRepository memberRepository;
-	
 	private final PasswordEncoder passwordEncoder;
 	private final TokenProvider tokenProvider;
 	private final AuthenticationManager authenticationManager;

@@ -16,7 +16,10 @@ import static com.example.study.member.api.dto.MemberRegisterDto.*;
 @RestController
 @RequiredArgsConstructor
 public class MemberApi {
+	
 	private final MemberService memberService;
+	
+	
 	
 	@PostMapping("/signup")
 	public MemberSignUpResponseDto signUp(

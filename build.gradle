@@ -65,6 +65,22 @@ dependencies {
 	implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
 	implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
 
+	// Enable Java Preview (1)
+	compileJava {
+		options.compilerArgs += ['--enable-preview', '-Amapstruct.defaultComp']
+	}
+
+	// Enable Java Preview (2)
+	compileTestJava {
+		options.compilerArgs += ['--enable-preview']
+	}
+
+	// Enable Java Preview (3)
+	test {
+		useJUnitPlatform()
+		jvmArgs(['--enable-preview'])
+	}
+
 }
 
 tasks.named('test') {

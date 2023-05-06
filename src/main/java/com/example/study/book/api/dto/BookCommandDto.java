@@ -3,7 +3,7 @@ package com.example.study.book.api.dto;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
-public record BookAddDto() {
+public record BookCommandDto() {
 	
 	public record BookAddRequestDto(
 			UUID genreId,
@@ -12,7 +12,6 @@ public record BookAddDto() {
 			String isbn,
 			String cip
 	){}
-	
 	public record BookAddResponseDto(
 			boolean success
 	){}

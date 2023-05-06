@@ -1,7 +1,7 @@
 package com.example.study.book.api;
 
-import com.example.study.book.api.dto.BookAddDto.BookAddRequestDto;
-import com.example.study.book.api.dto.BookAddDto.BookAddResponseDto;
+import com.example.study.book.api.dto.BookCommandDto.BookAddRequestDto;
+import com.example.study.book.api.dto.BookCommandDto.BookAddResponseDto;
 import com.example.study.book.service.BookCommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/books")
 @RequiredArgsConstructor
+@RequestMapping("/books")
 public final class BookCommandApi {
 	
 	private final BookCommandService bookCommandService;

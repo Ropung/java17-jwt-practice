@@ -14,12 +14,15 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
+@ToString
 @Table(
 		name = MySchemaConstants.TB_BOOK_GENRE,
 		schema = MySchemaConstants.SCHEMA
-		//		catalog = MySchemaConstants.SCHEMA
+//		catalog = MySchemaConstants.SCHEMA
 )
 public class BookGenre extends UuidBaseEntity {
 	@Column
-	private String genreName;
+	private String kor;
+	@Column
+	private String eng;
 }

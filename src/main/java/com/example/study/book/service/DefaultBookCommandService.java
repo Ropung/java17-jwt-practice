@@ -1,6 +1,6 @@
 package com.example.study.book.service;
 
-import com.example.study.book.api.dto.BookAddDto.BookAddRequestDto;
+import com.example.study.book.api.dto.BookCommandDto.BookAddRequestDto;
 import com.example.study.book.domain.Book;
 import com.example.study.book.repository.BookRepository;
 import com.example.study.member.repository.MemberRepository;

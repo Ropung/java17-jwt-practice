@@ -23,6 +23,7 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 //		catalog = MySchemaConstants.SCHEMA
 )
 public class Member extends UuidBaseEntity {
+	
 	@Column
 	private String email;
 	@Column
