@@ -6,6 +6,7 @@ import com.example.study.book.service.BookQueryService;
 import com.example.study.common.type.SearchType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -21,7 +22,7 @@ import static com.example.study.book.api.dto.BookQueryDto.BookReadResponseDto;
 @Log4j2
 public class BookQueryApi {
 	private final BookQueryService bookQueryService;
-	private final Integer PAGE_SIZE = 12;
+//	public final static Integer PAGE_SIZE = 12;
 	
 	// Restful(over) -> initial CRUD
 	// vs just Rest한 API
@@ -32,19 +33,23 @@ public class BookQueryApi {
 			@PageableDefault(size=12, sort="createAt", direction = Sort.Direction.DESC)
 			Pageable pageable,
 			@RequestParam(required = false) String keyword,
-			@RequestParam(required = false) SearchType searchType){
-		if (pageable.getPageNumber() != 0) pageable = pageable.previousOrFirst();
-		Long lastPageNumber =
-				bookQueryService.countByGenre(genreEng) / PAGE_SIZE
-						+ (bookQueryService.countByGenre(genreEng) % PAGE_SIZE != 0? 1 : 0);
+			@RequestParam(required = false, defaultValue = "NONE") SearchType searchType) {
+		// page -> human: 1 based, pageable instance -> 0 based system.
+		// default(no input): 0(no input) -> 0
+		// 1(human) -> 0(pageable)
+		// 2(human) -> 1(pageable)
+		// 3(human) -> 2(pageable)
+		// ...
+		pageable = pageable.previousOrFirst();
+		
+		Page<BookListProjection> bookSearchResult = bookQueryService.searchWithGenreBy(
+				genreEng, searchType, keyword, pageable);
+		List<BookListProjection> books = bookSearchResult.toList();
+		long lastPageNumber = bookSearchResult.getTotalPages();
 		
 		if (pageable.getPageNumber() >= lastPageNumber) {
 			throw BookQueryErrorCode.PAGE_OUT_OF_RANGE.defaultException();
 		}
-		
-		// TODO Search by ...
-		List<BookListProjection> books =
-				bookQueryService.findAllByGenre(genreEng, pageable);
 		
 		return BookReadResponseDto.builder()
 				.books(books)

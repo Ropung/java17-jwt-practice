@@ -33,7 +33,7 @@ public class TokenProvider {
 	}
 	
 	// 검증된 authentication를 넣어 토큰생성 설정등을 요기서함
-	public String generateToken(Authentication authentication) {
+	public String generateToken(Authentication authentication, String nickname) {
 		
 		// header 설정
 //		Map<String, Object> header = new HashMap<>();
@@ -48,7 +48,7 @@ public class TokenProvider {
 		
 		Claims claims = Jwts.claims().setSubject(email);
 		claims.put("auth", authorities);
-		claims.put("nickname", "닉네임들어가는지확인");
+		claims.put("nickname", nickname);
 		
 		//Access Token 생성
 		return Jwts.builder()

@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS joara_basic.book_genre (
 CREATE TABLE IF NOT EXISTS joara_basic.book (
     id                  UUID                                PRIMARY KEY,
     member_id           UUID                                ,
+    member_nickname     VARCHAR(255)                        ,
     genre_id            UUID                                ,
     isbn                VARCHAR(50)                         ,
     cip                 VARCHAR(50)                         ,

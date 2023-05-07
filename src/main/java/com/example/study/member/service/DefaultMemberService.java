@@ -60,12 +60,12 @@ public final class DefaultMemberService implements MemberService {
 	
 	@Override
 	public MemberLoginResponseDto login(MemberLoginRequestDto body) {
-		
 		UsernamePasswordAuthenticationToken authenticationToken =
 				new UsernamePasswordAuthenticationToken(body.email(),body.rawPassword());
 		Authentication authentication =
 				authenticationManager.authenticate(authenticationToken);
+		String nickname = memberRepository.findEmailAndNicknameByEmail(body.email()).nickname();
 		
-		return new MemberLoginResponseDto(tokenProvider.generateToken(authentication));
+		return new MemberLoginResponseDto(tokenProvider.generateToken(authentication, nickname));
 	}
 }

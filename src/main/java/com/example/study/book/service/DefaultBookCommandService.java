@@ -31,6 +31,7 @@ public final class DefaultBookCommandService implements BookCommandService {
 		JwtPayloadParser payloadParser = jwtPayloadParserBuilder.buildWith(request);
 		
 		String email = payloadParser.subject();
+		String nickname = payloadParser.claims().get("nickname", String.class);
 		
 		// 유저 아이디
 		UUID memberId = memberRepository.findIdByEmail(email)
@@ -47,6 +48,7 @@ public final class DefaultBookCommandService implements BookCommandService {
 		
 		Book book = Book.builder()
 				.memberId(memberId)
+				.memberNickname(nickname)
 				.genreId(dto.genreId())
 				.title(dto.title())
 				.description(dto.description())
