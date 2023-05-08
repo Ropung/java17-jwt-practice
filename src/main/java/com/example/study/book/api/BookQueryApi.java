@@ -22,24 +22,17 @@ import static com.example.study.book.api.dto.BookQueryDto.BookReadResponseDto;
 @Log4j2
 public class BookQueryApi {
 	private final BookQueryService bookQueryService;
-//	public final static Integer PAGE_SIZE = 12;
 	
 	// Restful(over) -> initial CRUD
 	// vs just Rest한 API
 	@GetMapping(path = "/genre/{genreEng}")
 	public BookReadResponseDto findAllByGenre(
 			@PathVariable String genreEng,
-			// 0~
-			@PageableDefault(size=12, sort="createAt", direction = Sort.Direction.DESC)
+			@PageableDefault(size=12, sort="createdAt", direction = Sort.Direction.DESC)
 			Pageable pageable,
 			@RequestParam(required = false) String keyword,
 			@RequestParam(required = false, defaultValue = "NONE") SearchType searchType) {
-		// page -> human: 1 based, pageable instance -> 0 based system.
-		// default(no input): 0(no input) -> 0
-		// 1(human) -> 0(pageable)
-		// 2(human) -> 1(pageable)
-		// 3(human) -> 2(pageable)
-		// ...
+		
 		pageable = pageable.previousOrFirst();
 		
 		Page<BookListProjection> bookSearchResult = bookQueryService.searchWithGenreBy(

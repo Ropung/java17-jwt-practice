@@ -32,5 +32,5 @@ public class MemberRefreshToken extends UuidBaseEntity {
 	@Builder.Default
 	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
 	@Column
-	private OffsetDateTime deleteAt;
+	private OffsetDateTime deletedAt;
 }

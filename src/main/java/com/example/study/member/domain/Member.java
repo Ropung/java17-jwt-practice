@@ -41,11 +41,11 @@ public class Member extends UuidBaseEntity {
 	private OffsetDateTime birth;
 	@Column
 	@Builder.Default
-	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
+	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
 	@Column
-	private OffsetDateTime updateAt;
+	private OffsetDateTime updatedAt;
 	@Column
-	private OffsetDateTime deleteAt;
+	private OffsetDateTime deletedAt;
 	@Column
 	@Enumerated(EnumType.STRING)
 	private AccountStatus status;
