@@ -1,6 +1,6 @@
 package com.example.study.upload.api;
 
-import com.example.study.properties.upload.UploadImageProperties;
+import com.example.study.common.properties.upload.UploadImageProperties;
 import com.example.study.upload.service.UploadImageService;
 import com.example.study.util.upload.DailyFileNameGenerator;
 import lombok.extern.log4j.Log4j2;

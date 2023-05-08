@@ -1,6 +1,6 @@
-package com.example.study.properties.upload;
+package com.example.study.common.properties.upload;
 
-import com.example.study.properties.upload.type.ImageStorageTargetType;
+import com.example.study.common.properties.upload.type.ImageStorageTargetType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 
