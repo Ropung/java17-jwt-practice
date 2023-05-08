@@ -1,4 +1,4 @@
-package com.example.study.properties.cors.allowed;
+package com.example.study.common.properties.cors.allowed;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;

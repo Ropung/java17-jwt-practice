@@ -1,7 +1,7 @@
 package com.example.study.config;
 
 import com.example.study.config.jwt.TokenProvider;
-import com.example.study.properties.jwt.JwtProperties;
+import com.example.study.common.properties.jwt.JwtProperties;
 import com.example.study.util.jwt.JwtPayloadParserBuilder;
 import com.example.study.util.security.EncoderFactory;
 import io.jsonwebtoken.JwtParser;

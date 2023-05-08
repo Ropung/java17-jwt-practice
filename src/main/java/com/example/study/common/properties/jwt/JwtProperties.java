@@ -1,4 +1,4 @@
-package com.example.study.properties.jwt;
+package com.example.study.common.properties.jwt;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;

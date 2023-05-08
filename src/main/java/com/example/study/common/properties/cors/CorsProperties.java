@@ -1,6 +1,6 @@
-package com.example.study.properties.cors;
+package com.example.study.common.properties.cors;
 
-import com.example.study.properties.cors.allowed.CorsAllowedProperties;
+import com.example.study.common.properties.cors.allowed.CorsAllowedProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;

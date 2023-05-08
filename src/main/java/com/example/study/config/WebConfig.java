@@ -2,7 +2,7 @@ package com.example.study.config;
 
 // 편하게 쓰려고 설정 파일 작성, 따로 분리 (설정,프로퍼티스)
 
-import com.example.study.properties.cors.CorsProperties;
+import com.example.study.common.properties.cors.CorsProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
