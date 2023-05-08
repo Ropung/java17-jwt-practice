@@ -1,11 +1,13 @@
 package com.example.study.book.repository;
 
 import com.example.study.book.domain.Book;
+import com.example.study.book.repository.projection.BookCoverUrlProjection;
 import com.example.study.book.repository.projection.BookListProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface BookRepository extends JpaRepository<Book, UUID> {
@@ -15,7 +17,8 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
 	Page<BookListProjection> findAllByGenreIdAndMemberNicknameContainsIgnoreCase(UUID genreId, String keyword, Pageable pageable);
 	Long countByGenreId(UUID genreId);
 	
-	//	List<BookListProjection> findAllProjectedBy(Pageable pageable);
+	Optional<BookCoverUrlProjection> findCoverUrlById(UUID id);
+	
 	
 	// 컬럼 이름으로 여러 회원 조회
 	// List<Member> findAllBy컬럼이름(String 컬럼이름);

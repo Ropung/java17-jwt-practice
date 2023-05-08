@@ -26,23 +26,27 @@ public class Episode extends UuidBaseEntity {
 	@Column
 	private UUID bookId;
 	@Column
-	private String epiTitle;
+	private UUID memberId;
 	@Column
-	private String epiContent;
+	private String nickname;
 	@Column
-	private String epiReview;
+	private String title;
 	@Column
-	private String epiCover;
+	private String content;
 	@Column
-	private Integer epiViewCount;
+	private String review;
+	@Column
+	private String coverUrl;
+	@Column
+	private Integer viewCount;
 	@Column
 	@Enumerated(EnumType.STRING)
-	private EpisodeStatus epiStatus;
+	private EpisodeStatus status;
 	@Column
 	@Builder.Default
-	private OffsetDateTime createAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
+	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
 	@Column
-	private OffsetDateTime updateAt;
+	private OffsetDateTime updatedAt;
 	@Column
-	private OffsetDateTime deleteAt;
+	private OffsetDateTime deletedAt;
 }
