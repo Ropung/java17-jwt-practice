@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS joara_basic.book (
     description         TEXT                                ,
     cover_url           VARCHAR(255)                        ,
     avg_score           DOUBLE PRECISION                    ,
-    create_at           DATE                                NOT NULL,
-    update_at           DATE                                ,
-    delete_at           DATE
+    created_at           DATE                                NOT NULL,
+    updated_at           DATE                                ,
+    deleted_at           DATE
 );
 
 --작품태그 목록(BookTag)테이블

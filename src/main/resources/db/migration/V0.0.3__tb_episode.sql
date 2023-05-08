@@ -13,15 +13,17 @@ CREATE TABLE IF NOT EXISTS joara_basic.epi_love (
 CREATE TABLE IF NOT EXISTS joara_basic.epi (
     id                  UUID                                PRIMARY KEY,
     book_id             UUID                                NOT NULL,
-    epi_title           VARCHAR(30)                         NOT NULL,
-    epi_content         TEXT                                NOT NULL,
-    epi_review          VARCHAR(30)                         ,
-    epi_cover           VARCHAR(255)                        ,
-    epi_view_count      BIGINT                              DEFAULT 0,
-    epi_status          VARCHAR(30)                         DEFAULT 'PENDING',
-    create_at           DATE                                NOT NULL,
-    update_at           DATE                                ,
-    delete_at           DATE
+    member_id           UUID                                ,
+    nickname            VARCHAR(255)                        ,
+    title               VARCHAR(255)                        ,
+    content             TEXT                                ,
+    review              VARCHAR(255)                        ,
+    cover_url           VARCHAR(255)                        ,
+    view_count          BIGINT                              DEFAULT 0,
+    status              VARCHAR(255)                        DEFAULT 'PENDING',
+    created_at          DATE                                NOT NULL,
+    updated_at          DATE                                ,
+    deleted_at          DATE
 );
 
 
@@ -31,9 +33,9 @@ CREATE TABLE IF NOT EXISTS joara_basic.epi_reply (
     id                  UUID                                PRIMARY KEY,
     epi_id              UUID                                NOT NULL,
     epi_reply_content   VARCHAR(255)                        NOT NULL,
-    create_at           DATE                                NOT NULL,
-    update_at           DATE                                ,
-    delete_at           DATE
+    created_at           DATE                                NOT NULL,
+    updated_at           DATE                                ,
+    deleted_at           DATE
 );
 
 --회차(EpiReply)댓글 테이블,  SEQUENCE 추가
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS joara_basic.epi_sub_reply (
     id                  UUID                                PRIMARY KEY,
     epi_sub_reply_id    UUID                                NOT NULL,
     epi_sub_reply_content   VARCHAR(255)                    NOT NULL,
-    create_at           DATE                                NOT NULL,
-    update_at           DATE                                ,
-    delete_at           DATE
+    created_at           DATE                                NOT NULL,
+    updated_at           DATE                                ,
+    deleted_at           DATE
 );
