@@ -24,8 +24,6 @@ public final class DefaultMemberService implements MemberService {
 	private final TokenProvider tokenProvider;
 	private final AuthenticationManager authenticationManager;
 	
-	//	private final MemberMapper memberMapper;
-	
 	public boolean checkEmailExists(String email) {
 		return memberRepository.existsMemberByEmail(email);
 	}

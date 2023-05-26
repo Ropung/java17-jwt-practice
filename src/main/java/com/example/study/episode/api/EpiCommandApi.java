@@ -18,9 +18,7 @@ public class EpiCommandApi {
 	
 	private final EpiCommandService epiCommandService;
 	@PostMapping("/add")
-	public EpiAddResponsetDto add(
-			@Valid EpiAddRequestDto body,
-			HttpServletRequest request){
-		return epiCommandService.add(body, request);
+	public EpiAddResponsetDto add(@Valid EpiAddRequestDto dto, HttpServletRequest request){
+		return epiCommandService.add(dto, request);
 	}
 }

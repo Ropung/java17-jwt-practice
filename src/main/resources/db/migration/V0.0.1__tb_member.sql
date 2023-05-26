@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS joara_basic.refresh_token (
     id                  UUID                                PRIMARY KEY,
     member_id           UUID                                NOT NULL,
     refresh_token       VARCHAR(255)                        ,
-    created_at           DATE                                NOT NULL,
-    updated_at           DATE                                ,
+    created_at           DATE                               NOT NULL,
+    updated_at           DATE                               ,
     deleted_at           DATE
 );
 
@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS joara_basic.member (
     phone               VARCHAR(30)                         ,
     gender              CHAR(1)                             ,
     birth               VARCHAR(30)                         ,
-    created_at           DATE                                NOT NULL,
-    updated_at           DATE                                ,
-    deleted_at           DATE                                ,
+    created_at          DATE                                NOT NULL,
+    updated_at          DATE                                ,
+    deleted_at          DATE                                ,
     status              VARCHAR(30)
 );
 
