@@ -1,5 +1,6 @@
 package com.example.study.book.api;
 
+import com.example.study.book.api.dto.BookQueryDto.*;
 import com.example.study.book.exception.BookQueryErrorCode;
 import com.example.study.book.repository.projection.BookListProjection;
 import com.example.study.book.service.BookQueryService;
@@ -13,8 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static com.example.study.book.api.dto.BookQueryDto.BookReadResponseDto;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ public class BookQueryApi {
 	// Restful(over) -> initial CRUD
 	// vs just Rest한 API
 	@GetMapping(path = "/genre/{genreEng}")
-	public BookReadResponseDto findAllByGenre(
+	public GetBooksResponseDto getBooksByGenre(
 			@PathVariable String genreEng,
 			@PageableDefault(size=12, sort="createdAt", direction = Sort.Direction.DESC)
 			Pageable pageable,
@@ -44,12 +44,40 @@ public class BookQueryApi {
 			throw BookQueryErrorCode.PAGE_OUT_OF_RANGE.defaultException();
 		}
 		
-		return BookReadResponseDto.builder()
+		return GetBooksResponseDto.builder()
+				.books(books)
+				.lastPage(lastPageNumber)
+				.build();
+	}
+	
+	@GetMapping("/{memberId}")
+	public GetMemberBooksResDto getBooksByMember(
+			@PathVariable UUID memberId,
+			@PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC)
+			Pageable pageable,
+			@RequestParam(required = false) String keyword,
+			@RequestParam(required = false) String genreEng,
+			@RequestParam(required = false, defaultValue = "NONE") SearchType searchType){
+		
+		pageable = pageable.previousOrFirst();
+		
+		Page<BookListProjection> memberBookSearchResult = bookQueryService.searchWithGenreBy(
+				genreEng, searchType, keyword, pageable);
+		
+		List<BookListProjection> books = memberBookSearchResult.toList();
+		long lastPageNumber = memberBookSearchResult.getTotalPages();
+		
+		if (pageable.getPageNumber() >= lastPageNumber) {
+			throw BookQueryErrorCode.PAGE_OUT_OF_RANGE.defaultException();
+		}
+		
+		return GetMemberBooksResDto.builder()
 				.books(books)
 				.lastPage(lastPageNumber)
 				.build();
 	}
 }
+
 // GET /genre/1/books
 // GET /genre/1/books/1
 // POST /genre/1/books
