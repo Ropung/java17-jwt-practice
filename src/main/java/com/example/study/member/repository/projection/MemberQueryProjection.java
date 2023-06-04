@@ -1,4 +1,4 @@
-package com.example.study.member.projection;
+package com.example.study.member.repository.projection;
 
 import java.util.UUID;
 

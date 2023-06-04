@@ -1,4 +1,4 @@
-package com.example.study.member.projection;
+package com.example.study.member.repository.projection;
 
 public record MemberEmailNicknameProjection(
 		String email,
