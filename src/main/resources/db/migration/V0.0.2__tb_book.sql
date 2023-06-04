@@ -16,15 +16,15 @@ CREATE TABLE IF NOT EXISTS joara_basic.book (
     member_id           UUID                                ,
     member_nickname     VARCHAR(255)                        ,
     genre_id            UUID                                ,
-    isbn                VARCHAR(50)                         ,
-    cip                 VARCHAR(50)                         ,
-    title               VARCHAR(30)                         ,
+    isbn                VARCHAR(255)                        ,
+    cip                 VARCHAR(255)                        ,
+    title               VARCHAR(255)                        ,
     description         TEXT                                ,
     cover_url           VARCHAR(255)                        ,
     avg_score           DOUBLE PRECISION                    ,
-    created_at           DATE                                NOT NULL,
-    updated_at           DATE                                ,
-    deleted_at           DATE
+    created_at          DATE                                NOT NULL,
+    updated_at          DATE                                ,
+    deleted_at          DATE
 );
 
 --작품태그 목록(BookTag)테이블
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS joara_basic.book_tag (
 --작품태그(BookFreeTag)테이블
 --CREATE TABLE IF NOT EXISTS joara_basic.book_tag (
 --    id                  UUID                                PRIMARY KEY,
---    book_tag_name       VARCHAR(30)                         NOT NULL
+--    book_tag_name       VARCHAR(255)                         NOT NULL
 --);
 
 ----작품(책) 디폴트 생성

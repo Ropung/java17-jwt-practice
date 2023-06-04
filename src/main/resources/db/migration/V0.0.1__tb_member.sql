@@ -11,17 +11,17 @@ CREATE TABLE IF NOT EXISTS joara_basic.refresh_token (
 --회원(Member)테이블
 CREATE TABLE IF NOT EXISTS joara_basic.member (
     id                  UUID                                PRIMARY KEY,
-    email               VARCHAR(30)                         NOT NULL        UNIQUE,
+    email               VARCHAR(255)                        NOT NULL        UNIQUE,
     password            VARCHAR(255)                        NOT NULL,
-    name                VARCHAR(30)                         NOT NULL,
-    nickname            VARCHAR(30)                         NOT NULL        UNIQUE,
-    phone               VARCHAR(30)                         ,
+    name                VARCHAR(255)                        NOT NULL,
+    nickname            VARCHAR(255)                        NOT NULL        UNIQUE,
+    phone               VARCHAR(255)                        ,
     gender              CHAR(1)                             ,
-    birth               VARCHAR(30)                         ,
+    birth               VARCHAR(255)                        ,
     created_at          DATE                                NOT NULL,
     updated_at          DATE                                ,
     deleted_at          DATE                                ,
-    status              VARCHAR(30)
+    status              VARCHAR(255)
 );
 
 CREATE UNIQUE INDEX udx_member_email ON joara_basic.member(email);
@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS joara_basic.member_favor_genre (
     id                  UUID                                PRIMARY KEY,
     genre_id            UUID                                NOT NULL,
     member_id           UUID                                NOT NULL,
-    favor_genre_name    VARCHAR(30)                         ,
-    created_at           DATE                                NOT NULL
+    favor_genre_name    VARCHAR(255)                        ,
+    created_at          DATE                                NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS joara_basic.member_favor_book (

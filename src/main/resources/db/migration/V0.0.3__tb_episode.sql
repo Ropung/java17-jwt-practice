@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS joara_basic.epi (
 --회차(EpiComment)댓글 테이블,  SEQUENCE 추가
 
 CREATE TABLE IF NOT EXISTS joara_basic.epi_reply (
-    id                  UUID                                PRIMARY KEY,
-    epi_id              UUID                                NOT NULL,
-    epi_reply_content   VARCHAR(255)                        NOT NULL,
+    id                   UUID                                PRIMARY KEY,
+    epi_id               UUID                                NOT NULL,
+    epi_reply_content    VARCHAR(255)                        NOT NULL,
     created_at           DATE                                NOT NULL,
     updated_at           DATE                                ,
     deleted_at           DATE
@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS joara_basic.epi_reply (
 
 --회차(EpiReply)댓글 테이블,  SEQUENCE 추가
 CREATE TABLE IF NOT EXISTS joara_basic.epi_sub_reply (
-    id                  UUID                                PRIMARY KEY,
-    epi_sub_reply_id    UUID                                NOT NULL,
-    epi_sub_reply_content   VARCHAR(255)                    NOT NULL,
-    created_at           DATE                                NOT NULL,
-    updated_at           DATE                                ,
-    deleted_at           DATE
+    id                      UUID                                PRIMARY KEY,
+    epi_sub_reply_id        UUID                                NOT NULL,
+    epi_sub_reply_content   VARCHAR(255)                        NOT NULL,
+    created_at              DATE                                NOT NULL,
+    updated_at              DATE                                ,
+    deleted_at              DATE
 );
