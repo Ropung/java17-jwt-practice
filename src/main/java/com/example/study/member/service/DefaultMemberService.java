@@ -34,8 +34,7 @@ public final class DefaultMemberService implements MemberService {
 		boolean check = checkEmailExists(dto.email());
 		
 		if (check) {
-//			throw new IllegalArgumentException("이미 존재하는 유저입니다.");
-			return false;
+			throw new IllegalArgumentException("이미 존재하는 유저입니다.");
 		}
 		
 		String rawPassword = dto.rawPassword();

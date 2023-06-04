@@ -28,23 +28,15 @@ public class Book extends UuidBaseEntity {
 	@Column private String memberNickname;
 	@Column private UUID genreId;
 	@Column private String title;
-	@Column
-	private String description;
-	@Column
-	private String coverUrl;
-	@Column
-	private String isbn;
-	@Column
-	private String cip;
-	@Column
-	@Builder.Default
+	@Column private String description;
+	@Column private String coverUrl;
+	@Column private String isbn;
+	@Column private String cip;
+	@Column @Builder.Default
 	private Double avgScore = 0.;
-	@Column
-	@Builder.Default
+	@Column @Builder.Default
 	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
-	@Column
-	private OffsetDateTime updatedAt;
-	@Column
-	private OffsetDateTime deletedAt;
+	@Column private OffsetDateTime updatedAt;
+	@Column private OffsetDateTime deletedAt;
 }
 

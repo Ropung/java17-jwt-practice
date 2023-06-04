@@ -23,31 +23,19 @@ import static com.example.study.support.Constants.DEFAULT_TIMEZONE_ID;
 //		catalog = MySchemaConstants.SCHEMA
 )
 public class Member extends UuidBaseEntity {
-	
-	@Column
-	private String email;
-	@Column
-	private String password;
-	@Column
-	private String name;
-	@Column
-	private String nickname;
-	@Column
-	private String phone;
-	@Column
-	@Enumerated(EnumType.STRING)
+	@Column private String email;
+	@Column private String password;
+	@Column private String name;
+	@Column private String nickname;
+	@Column private String phone;
+	@Column @Enumerated(EnumType.STRING)
 	private Gender gender;
-	@Column
-	private OffsetDateTime birth;
-	@Column
-	@Builder.Default
+	@Column private OffsetDateTime birth;
+	@Column @Builder.Default
 	private OffsetDateTime createdAt = OffsetDateTime.now(DEFAULT_TIMEZONE_ID);
-	@Column
-	private OffsetDateTime updatedAt;
-	@Column
-	private OffsetDateTime deletedAt;
-	@Column
-	@Enumerated(EnumType.STRING)
+	@Column private OffsetDateTime updatedAt;
+	@Column private OffsetDateTime deletedAt;
+	@Column @Enumerated(EnumType.STRING)
 	private AccountStatus status;
 }
 
